@@ -43,7 +43,7 @@ static SocketAddress sa;
 EventQueue queue(32 * EVENTS_EVENT_SIZE);
 Thread t;
 Mutex value_increment_mutex;
-DigitalOut led(LED1);
+DigitalOut led(LED2);
 
 void blink() {
     led = !led;
