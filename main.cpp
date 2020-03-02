@@ -43,6 +43,11 @@ static SocketAddress sa;
 EventQueue queue(32 * EVENTS_EVENT_SIZE);
 Thread t;
 Mutex value_increment_mutex;
+DigitalOut led(LED1);
+
+void blink() {
+    led = !led;
+}
 
 void print_client_ids(void)
 {
@@ -245,6 +250,7 @@ int main(void)
 
     t.start(callback(&queue, &EventQueue::dispatch_forever));
     queue.call_every(5000, value_increment);
+    queue.call_every(5000, blink);
 
     // Flush the stdin buffer before reading from it
     flush_stdin_buffer();
